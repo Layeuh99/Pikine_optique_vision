@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Pikine Optique Vision</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header admin-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <img src="../assets/logos/logo-pikine-optique.png" alt="Pikine Optique Vision" />
+        <div>
+          <span>Administration</span>
+          <small>Gérez produits, promotions et commandes</small>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">Retour au site</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="admin-auth-overlay" class="admin-auth-overlay">
+    <div class="admin-auth-card">
+      <h2>Accès Administration</h2>
+      <p>Entrez votre mot de passe pour accéder à l’espace administration.</p>
+      <form id="admin-login-form">
+        <label>
+          Mot de passe
+          <input type="password" id="admin-password" required />
+        </label>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Se connecter</button>
+        </div>
+        <p id="admin-login-error" class="admin-error"></p>
+      </form>
+    </div>
+  </div>
+
+  <main class="admin-panel container hidden">
+    <section class="admin-card">
+      <h2>Ajouter / modifier un produit</h2>
+      <form id="product-form">
+        <div class="form-grid">
+          <label>
+            Nom du produit
+            <input type="text" id="product-name" required />
+          </label>
+          <label>
+            Prix (FCFA)
+            <input type="number" id="product-price" min="0" required />
+          </label>
+          <label>
+            Disponibilité
+            <select id="product-stock">
+              <option value="En stock">En stock</option>
+              <option value="Stock limité">Stock limité</option>
+              <option value="En rupture">En rupture</option>
+            </select>
+          </label>
+          <label>
+            Catégorie
+            <select id="product-category">
+              <option value="photochromique">Photochromique</option>
+              <option value="anti-lumiere">Anti lumière bleue</option>
+              <option value="anti-reflet">Anti reflet</option>
+              <option value="solaire">Solaire</option>
+            </select>
+          </label>
+          <label>
+            Image principale
+            <input type="text" id="product-image" placeholder="assets/products/nom-image.jpg" required />
+          </label>
+          <label>
+            Description
+            <textarea id="product-description" rows="4" required></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Enregistrer</button>
+          <button class="btn btn-secondary" type="button" id="clear-form">Réinitialiser</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="admin-card admin-listing">
+      <h2>Produits</h2>
+      <div id="product-list"></div>
+    </section>
+
+    <section class="admin-card admin-listing">
+      <h2>Commandes</h2>
+      <div id="orders-list"></div>
+    </section>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

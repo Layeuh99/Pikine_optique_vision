@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr" class="is-loading">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produit | Pikine Optique Vision</title>
+  <meta name="description" content="Détail du produit Pikine Optique Vision" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css?v=3" />
+</head>
+<body>
+  <div class="loader-overlay" aria-hidden="true">
+    <div class="loader-frame">
+      <span class="loader-dot"></span>
+      <p>Chargement du produit...</p>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logos/logo-pikine-optique.png" alt="Pikine Optique Vision" />
+        <div>
+          <span>Pikine Optique Vision</span>
+          <small>Retour à la boutique</small>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Accueil</a>
+        <a href="index.html#produits">Produits</a>
+        <a class="btn btn-outline" href="paiement/index.html">Paiement</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="section product-detail-page reveal">
+      <div class="container product-detail-grid">
+        <div class="product-gallery glass">
+          <div class="gallery-topbar">
+            <span class="eyebrow" id="product-category"></span>
+            <h1 id="product-title">Produit</h1>
+          </div>
+          <div class="gallery-frame">
+            <img id="main-product-image" src="" alt="Produit Pikine Optique Vision" />
+          </div>
+          <div class="gallery-grid" id="product-gallery"></div>
+        </div>
+
+        <div class="product-info glass">
+          <p class="product-tagline" id="product-tagline"></p>
+          <div class="product-meta">
+            <div class="price" id="product-price"></div>
+            <span class="badge product-badge" id="product-availability"></span>
+          </div>
+          <p class="product-description" id="product-description"></p>
+          <ul class="feature-list" id="product-features"></ul>
+          <div class="product-actions">
+            <a class="btn btn-primary" id="product-whatsapp" href="#" target="_blank" rel="noreferrer">Commander sur WhatsApp</a>
+            <a class="btn btn-secondary" id="product-payment" href="#">Paiement</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark reveal">
+      <div class="container section-heading">
+        <p class="section-label">Livraison & paiement</p>
+        <h2>Services fiables</h2>
+        <p>Livraison gratuite à Dakar. Livraison régionale 50/50. Paiement à la réception disponible.</p>
+      </div>
+      <div class="container cards-grid">
+        <article class="feature-card glass">
+          <h3>Livraison Premium</h3>
+          <p>Expédition soignée avec suivi, réception rapide à Dakar ou partout au Sénégal.</p>
+        </article>
+        <article class="feature-card glass gold-card">
+          <h3>Paiement sécurisé</h3>
+          <p>Choisissez Wave ou paiement à la livraison selon votre préférence.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <a class="whatsapp-fab" href="#" id="whatsapp-fab" aria-label="Contacter sur WhatsApp">
+    <span>WhatsApp</span>
+  </a>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p>© 2026 Pikine Optique Vision. Tous droits réservés.</p>
+        <p>Design premium, service local à Dakar.</p>
+      </div>
+      <a class="footer-link" href="administration/index.html">Espace Administration</a>
+    </div>
+  </footer>
+
+  <script src="js/config.js?v=3"></script>
+  <script src="js/data.js?v=3"></script>
+  <script src="js/product.js?v=3"></script>
+</body>
+</html>

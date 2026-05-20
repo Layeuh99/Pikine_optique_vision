@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr" class="is-loading">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pikine Optique Vision | Lunettes photochromiques et anti-lumière bleue</title>
+  <meta name="description" content="Pikine Optique Vision - Boutique premium de lunettes photochromiques, anti lumière bleue, anti reflet et solaire au Sénégal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css?v=3" />
+</head>
+<body>
+  <div class="loader-overlay" aria-hidden="true">
+    <div class="loader-frame">
+      <span class="loader-dot"></span>
+      <p>Chargement de l’expérience premium...</p>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">
+        <img src="assets/logos/logo-pikine-optique.png" alt="Logo Pikine Optique Vision" />
+        <div>
+          <span>Pikine Optique Vision</span>
+          <small>Vision premium à Pikine</small>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a href="#produits">Produits</a>
+        <a href="#promotions">Promotions</a>
+        <a href="#nouveautes">Nouveautés</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-outline" href="paiement/index.html">Paiement</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="hero reveal" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">Lunettes photochromiques | Anti lumière bleue | Anti reflet</span>
+        <h1>Protégez vos yeux avec style <span>😎</span></h1>
+        <p>Découvrez une collection premium de lunettes alliant protection, confort et une silhouette moderne inspirée des boutiques haut de gamme.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#produits">Voir la collection</a>
+          <a class="btn btn-secondary" href="https://wa.me/221777123456?text=Bonjour%20Pikine%20Optique%20Vision%20%F0%9F%91%8B" target="_blank" rel="noreferrer">Commander sur WhatsApp</a>
+        </div>
+        <div class="hero-highlight">
+          <div>
+            <strong>Livraison gratuite</strong>
+            <span>Dakar & région 50/50</span>
+          </div>
+          <div>
+            <strong>Paiement à la réception</strong>
+            <span>Simple, sûr et local</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-media-deco"></div>
+        <img src="assets/banners/banner-main1.png" alt="Lunettes premium Pikine Optique" />
+        <div class="hero-scroll">
+          <span></span>
+          <small>Faites défiler</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section feature-strip reveal">
+      <div class="container feature-strip-grid">
+        <article class="feature-card glass">
+          <h3>Élégance discrète</h3>
+          <p>Des montures sophistiquées avec un confort haute tenue pour le quotidien.</p>
+        </article>
+        <article class="feature-card glass">
+          <h3>Protection premium</h3>
+          <p>Verres anti-lumière bleue, photochromiques et anti-reflet pour un usage moderne.</p>
+        </article>
+        <article class="feature-card glass">
+          <h3>Service sur mesure</h3>
+          <p>Support WhatsApp, conseils personnalisés et retours faciles.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-full" id="produits">
+      <div class="container section-heading">
+        <p class="section-label">Collection exclusive</p>
+        <h2>Produits populaires</h2>
+        <p>Faites votre choix parmi nos lunettes les plus recherchées, conçues pour le style et la protection.</p>
+      </div>
+      <div class="container product-toolbar reveal">
+        <div class="filter-group">
+          <label>
+            Catégorie
+            <select id="category-filter">
+              <option value="all">Toutes</option>
+              <option value="photochromique">Photochromique</option>
+              <option value="anti-lumiere">Anti lumière bleue</option>
+              <option value="anti-reflet">Anti reflet</option>
+              <option value="solaire">Solaire</option>
+            </select>
+          </label>
+          <label>
+            Rechercher
+            <input id="search-input" type="search" placeholder="Recherche par nom ou description..." />
+          </label>
+        </div>
+        <div class="filter-summary" id="filter-count"></div>
+      </div>
+      <div id="product-grid" class="container product-grid reveal"></div>
+    </section>
+
+    <section class="section section-dark reveal" id="promotions">
+      <div class="container section-heading">
+        <p class="section-label">Offres limitées</p>
+        <h2>Promotions exclusives</h2>
+        <p>Profitez de réductions sélectionnées sur nos collections photochromiques et solaires.</p>
+      </div>
+      <div class="promotion-grid container">
+        <article class="promo-card glass gold-card">
+          <h3>-20% sur la collection photochromique</h3>
+          <p>Produits intelligents qui s’adaptent automatiquement à la luminosité.</p>
+        </article>
+        <article class="promo-card glass">
+          <h3>Kit d’entretien offert</h3>
+          <p>Boîtier et produit de nettoyage offerts pour chaque paire commandée.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-full reveal" id="nouveautes">
+      <div class="container section-heading">
+        <p class="section-label">Nouveauté</p>
+        <h2>Dernières tendances</h2>
+        <p>Nos nouveaux modèles allient technologie et design contemporain pour un rendu ultra-chic.</p>
+      </div>
+      <div class="new-grid container"></div>
+    </section>
+
+    <section class="section section-gallery reveal" id="galerie">
+      <div class="container section-heading">
+        <p class="section-label">Galerie premium</p>
+        <h2>Inspiration visuelle</h2>
+        <p>Explorez une sélection d’images raffinées qui mettent en valeur nos montures.</p>
+      </div>
+      <div class="gallery-grid container">
+        <article class="gallery-item">
+          <img src="assets/products/banner-luxury-space.jpeg" alt="Galerie lunette premium 1" loading="lazy" />
+          <div class="gallery-overlay">
+            <h3>Space Edition</h3>
+            <span>Lunettes photochromiques</span>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <img src="assets/products/lunette-black-style.jpeg" alt="Galerie lunette premium 2" loading="lazy" />
+          <div class="gallery-overlay">
+            <h3>Black Style</h3>
+            <span>Protection solaire</span>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <img src="assets/products/lunette-anti-lumiere-bleue.jpg" alt="Galerie lunette premium 3" loading="lazy" />
+          <div class="gallery-overlay">
+            <h3>Blue Guard</h3>
+            <span>Anti lumière bleue</span>
+          </div>
+        </article>
+        <article class="gallery-item">
+          <img src="assets/products/banner-premium-black.jpeg" alt="Galerie lunette premium 4" loading="lazy" />
+          <div class="gallery-overlay">
+            <h3>Premium Black</h3>
+            <span>Anti reflet</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-testimonials reveal" id="avis">
+      <div class="container section-heading">
+        <p class="section-label">Clients satisfaits</p>
+        <h2>Avis clients</h2>
+        <p>Nos clients recommandent Pikine Optique Vision pour son service et la qualité des modèles.</p>
+      </div>
+      <div class="container testimonial-grid" id="testimonial-grid"></div>
+    </section>
+
+    <section class="section section-contact reveal" id="contact">
+      <div class="container section-heading">
+        <p class="section-label">Contact premium</p>
+        <h2>Parlons de votre prochaine paire</h2>
+        <p>Besoin d’un conseil sur une monture ou une protection spéciale ? Nous sommes là pour vous.</p>
+      </div>
+      <div class="container contact-grid">
+        <div class="contact-panel glass">
+          <span class="eyebrow">Pikine Optique Vision</span>
+          <h3>Bountou Pikine côté station Total</h3>
+          <p>Livraison gratuite à Dakar • Livraison régionale 50/50 • Paiement à la réception.</p>
+          <div class="contact-details">
+            <div>
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/221777123456?text=Bonjour%20Pikine%20Optique%20Vision%20%F0%9F%91%8B" target="_blank" rel="noreferrer">+221 77 712 3456</a>
+            </div>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:contact@pikineoptique.sn">contact@pikineoptique.sn</a>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="TikTok">TikTok</a>
+            <a href="#" aria-label="Google Maps">Google Maps</a>
+          </div>
+        </div>
+        <form class="contact-form glass" action="#" method="post">
+          <div class="form-grid">
+            <label>
+              Votre nom
+              <input type="text" placeholder="Nom complet" />
+            </label>
+            <label>
+              Email
+              <input type="email" placeholder="email@exemple.com" />
+            </label>
+            <label>
+              Sujet
+              <input type="text" placeholder="Demande de montage, disponibilité..." />
+            </label>
+            <label class="full-width">
+              Message
+              <textarea rows="5" placeholder="Écrivez votre message ici..."></textarea>
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit">Envoyer le message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <a class="whatsapp-fab" href="#" id="whatsapp-fab" aria-label="Contacter sur WhatsApp">
+    <span>WhatsApp</span>
+  </a>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p>© 2026 Pikine Optique Vision. Tous droits réservés.</p>
+        <p>Design premium, service local à Dakar.</p>
+      </div>
+      <a class="footer-link" href="administration/index.html">Espace Administration</a>
+    </div>
+  </footer>
+
+  <script src="js/config.js?v=3"></script>
+  <script src="js/data.js?v=3"></script>
+  <script src="js/main.js?v=3"></script>
+</body>
+</html>

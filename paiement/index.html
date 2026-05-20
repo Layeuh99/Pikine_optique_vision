@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paiement | Pikine Optique Vision</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <img src="../assets/logos/logo-pikine-optique.png" alt="Pikine Optique Vision" />
+        <div>
+          <span>Paiement sécurisé</span>
+          <small>Wave ou paiement à la livraison</small>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">Retour au site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section payment-page">
+    <section class="section-heading">
+      <h2>Options de paiement</h2>
+      <p>Choisissez le mode de paiement qui vous convient le mieux au Sénégal.</p>
+    </section>
+
+    <div class="payment-grid">
+      <article class="payment-card">
+        <h3>Paiement Wave</h3>
+        <p>Transférez le montant directement au numéro Wave de Pikine Optique Vision.</p>
+        <ul>
+          <li>Rapide</li>
+          <li>Fiable</li>
+          <li>Sûr</li>
+        </ul>
+        <div class="payment-detail">
+          <span>Numéro Wave :</span>
+          <strong>77 712 3456</strong>
+        </div>
+      </article>
+
+      <article class="payment-card gold-card">
+        <h3>Paiement à la livraison</h3>
+        <p>Payez votre paire de lunettes lorsque vous la recevez à domicile ou en point relais.</p>
+        <ul>
+          <li>Pratique</li>
+          <li>Sérénité</li>
+          <li>Adapté à Dakar et régions</li>
+        </ul>
+        <a class="btn btn-primary" id="order-whatsapp" href="#">Commander sur WhatsApp</a>
+      </article>
+    </div>
+
+    <section class="payment-details">
+      <div class="section-heading">
+        <h2>Livraison</h2>
+        <p>🚚 Livraison gratuite à Dakar / Livraison régionale disponible (50/50) / Paiement à la réception disponible.</p>
+      </div>
+      <div class="payment-note">
+        <p>Pour finaliser une commande, cliquez sur le bouton WhatsApp ci-dessus. Le message sera prérempli pour un contact rapide avec Pikine Optique Vision.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script>
+    const orderButton = document.getElementById('order-whatsapp');
+    const query = new URLSearchParams(window.location.search);
+    const product = query.get('product') || 'une paire de lunettes élégante';
+      const message = `Bonjour ${SITE_CONFIG.sellerName} 👋\nJe suis intéressé par cette paire de lunettes : ${product}`;
+      orderButton.href = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;

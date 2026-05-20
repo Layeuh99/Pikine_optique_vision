@@ -1,0 +1,10 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Python artifacts
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
