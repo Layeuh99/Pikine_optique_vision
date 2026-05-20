@@ -6,6 +6,8 @@ const categoryFilter = document.getElementById('category-filter');
 const searchInput = document.getElementById('search-input');
 const filterCount = document.getElementById('filter-count');
 const header = document.querySelector('.site-header');
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelectorAll('.site-nav a');
 const revealElements = document.querySelectorAll('.reveal');
 
 const products = getStoredProducts();
@@ -112,6 +114,26 @@ const setupFilters = () => {
   searchInput.addEventListener('input', renderProducts);
 };
 
+const setupMobileMenu = () => {
+  if (!menuToggle || !header) return;
+
+  menuToggle.addEventListener('click', () => {
+    header.classList.toggle('menu-open');
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      header.classList.remove('menu-open');
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      header.classList.remove('menu-open');
+    }
+  });
+};
+
 const initPageEffects = () => {
   if (header) {
     const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
@@ -149,4 +171,5 @@ renderProducts();
 renderNewProducts();
 renderTestimonials();
 setupWhatsAppFab();
+setupMobileMenu();
 initPageEffects();

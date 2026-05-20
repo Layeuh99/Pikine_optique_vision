@@ -160,6 +160,59 @@ html.page-ready .loader-overlay {
     gap: 2rem;
 }
 
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    position: relative;
+    z-index: 101;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+    top: 10px;
+}
+
+.menu-toggle span:nth-child(2) {
+    top: 19px;
+}
+
+.menu-toggle span:nth-child(3) {
+    top: 28px;
+}
+
+.site-header.menu-open .menu-toggle span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.site-header.menu-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.site-header.menu-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.site-nav {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
 .site-nav a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.9);
@@ -232,7 +285,7 @@ html.page-ready .loader-overlay {
 .page-content {
     position: relative;
     z-index: 1;
-    padding-top: 120px;
+    padding-top: 140px;
 }
 
 /* ===== SECTION ===== */
@@ -1030,18 +1083,36 @@ html.page-ready .loader-overlay {
         gap: 0.75rem;
     }
 
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .site-nav {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
+        align-items: stretch;
         gap: 0.75rem;
-        padding-top: 0.75rem;
+        padding: 0;
+        margin-top: 0.75rem;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        background: rgba(12, 27, 47, 0.95);
+        border-radius: 20px;
+        transition: max-height 0.35s ease, opacity 0.35s ease;
+    }
+
+    .site-header.menu-open .site-nav {
+        max-height: 520px;
+        opacity: 1;
     }
 
     .site-nav a {
-        white-space: nowrap;
+        white-space: normal;
         font-size: 0.95rem;
-        padding: 0.35rem 0;
+        padding: 0.9rem 1rem;
     }
 
     .hero {
@@ -1135,15 +1206,33 @@ html.page-ready .loader-overlay {
         align-items: stretch;
     }
 
+    .menu-toggle {
+        display: inline-flex;
+    }
+
     .site-nav {
-        justify-content: center;
+        flex-direction: column;
+        align-items: stretch;
         gap: 0.6rem;
         padding-top: 0.6rem;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.35s ease, opacity 0.35s ease;
+    }
+
+    .site-header.menu-open .site-nav {
+        max-height: 520px;
+        opacity: 1;
     }
 
     .site-nav a {
         font-size: 0.88rem;
-        padding: 0.4rem 0.5rem;
+        padding: 0.9rem 1rem;
+    }
+
+    .site-nav::-webkit-scrollbar {
+        display: none;
     }
 
     .brand img {
@@ -1153,6 +1242,11 @@ html.page-ready .loader-overlay {
     .hero {
         padding: 30px 0;
         gap: 1.5rem;
+        margin-top: 110px;
+    }
+
+    .page-content {
+        padding-top: 180px;
     }
 
     .hero h1 {
