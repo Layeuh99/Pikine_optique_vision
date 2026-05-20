@@ -54,7 +54,7 @@ const renderProduct = () => {
     productGallery.innerHTML = galleryImages
       .map((src, index) => `
         <button class="gallery-thumb" type="button" data-src="${src}">
-          <img src="${src}" alt="${product.name} image ${index + 1}" loading="lazy" />
+          <img src="${src}" alt="${product.name} image ${index + 1}" loading="lazy" decoding="async" />
         </button>
       `)
       .join('');

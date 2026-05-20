@@ -48,7 +48,7 @@ const renderProducts = () => {
     ? visibleProducts
         .map((product) => `
       <article class="product-card">
-        <img src="${product.image}" alt="${product.name}" loading="lazy" />
+        <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" />
         <div class="meta">
           <span class="badge">${product.badge}</span>
           <span>${product.availability}</span>
@@ -73,7 +73,7 @@ const renderNewProducts = () => {
   newProductsGrid.innerHTML = featured
     .map((product) => `
       <article class="product-card">
-        <img src="${product.image}" alt="${product.name}" loading="lazy" />
+        <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" />
         <div class="meta">
           <span class="badge">${product.category}</span>
           <span>${product.availability}</span>
