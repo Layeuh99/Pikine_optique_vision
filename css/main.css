@@ -1038,6 +1038,15 @@ html.page-ready .loader-overlay {
         grid-template-columns: 1fr;
     }
 
+    .hero-media {
+        min-height: 320px;
+    }
+
+    .hero-media img {
+        width: 100%;
+        height: auto;
+    }
+
     .section {
         padding: 60px 0;
     }
@@ -1070,7 +1079,16 @@ html.page-ready .loader-overlay {
     }
 
     .site-nav {
-        display: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+        padding-top: 1rem;
+    }
+
+    .site-nav a {
+        white-space: nowrap;
+        font-size: 0.95rem;
     }
 
     .whatsapp-fab {
@@ -1083,6 +1101,13 @@ html.page-ready .loader-overlay {
 @media (max-width: 480px) {
     .header-inner {
         flex-direction: column;
+        align-items: stretch;
+    }
+
+    .site-nav {
+        width: 100%;
+        justify-content: center;
+        gap: 0.7rem;
     }
 
     .brand img {
