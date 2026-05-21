@@ -2227,17 +2227,17 @@ const TESTIMONIALS = [
   {
     "name": "Aïssatou D.",
     "role": "Cliente satisfaite",
-    "text": "J’ai acheté une paire anti lumière bleue et je sens vraiment la différence. Livraison rapide et service très professionnel."
+    "text": "J'ai acheté une paire anti lumière bleue et je sens vraiment la différence. Livraison rapide et service très professionnel."
   },
   {
     "name": "Moussa K.",
     "role": "Client fidèle",
-    "text": "Monture élégante et très confortable. J’adore le traitement anti reflet, parfait pour le bureau et le soleil."
+    "text": "Monture élégante et très confortable. J'adore le traitement anti reflet, parfait pour le bureau et le soleil."
   },
   {
     "name": "Fatou S.",
     "role": "Nouvelle cliente",
-    "text": "Le service WhatsApp m’a aidé à choisir la meilleure paire. Je recommande fortement Pikine Optique Vision."
+    "text": "Le service WhatsApp m'a aidé à choisir la meilleure paire. Je recommande fortement Pikine Optique Vision."
   }
 ]
 
@@ -2273,3 +2273,19 @@ const saveOrder = (order) => {
   current.unshift(order);
   localStorage.setItem(ORDERS_KEY, JSON.stringify(current));
 };
+
+const CONTACTS_KEY = "pikine-optique-vision-contacts";
+
+function getStoredContacts() {
+  const stored = localStorage.getItem(CONTACTS_KEY);
+  return stored ? JSON.parse(stored) : [];
+}
+
+function saveContact(contact) {
+  const current = getStoredContacts();
+  current.unshift(contact);
+  localStorage.setItem(CONTACTS_KEY, JSON.stringify(current));
+}
+
+window.getStoredContacts = getStoredContacts;
+window.saveContact = saveContact;

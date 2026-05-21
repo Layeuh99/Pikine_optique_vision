@@ -5,12 +5,25 @@ const whatsappFab = document.getElementById('whatsapp-fab');
 const categoryFilter = document.getElementById('category-filter');
 const searchInput = document.getElementById('search-input');
 const filterCount = document.getElementById('filter-count');
+const contactForm = document.getElementById('contact-form');
+const contactNameInput = document.getElementById('contact-name');
+const contactEmailInput = document.getElementById('contact-email');
+const contactPhoneInput = document.getElementById('contact-phone');
+const contactSubjectInput = document.getElementById('contact-subject');
+const contactMessageInput = document.getElementById('contact-message');
+const contactFeedback = document.getElementById('contact-feedback');
 const header = document.querySelector('.site-header');
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelectorAll('.site-nav a');
 const revealElements = document.querySelectorAll('.reveal');
 
 const products = getStoredProducts();
+const categoryLabels = {
+  photochromique: 'Photochromique',
+  'anti-lumiere': 'Anti lumière bleue',
+  'anti-reflet': 'Anti reflet',
+  solaire: 'Solaire',
+};
 
 const buildWhatsAppLink = (productName) => {
   const message = `${SITE_CONFIG.whatsappGreeting}\nJe suis intéressé par cette paire de lunettes : ${productName}`;
@@ -52,7 +65,7 @@ const renderProducts = () => {
       <article class="product-card">
         <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" />
         <div class="meta">
-          <span class="badge">${product.badge}</span>
+          <span class="badge">${product.badge || categoryLabels[product.category] || product.category}</span>
           <span>${product.availability}</span>
         </div>
         <h3>${product.name}</h3>
@@ -60,24 +73,25 @@ const renderProducts = () => {
         <div class="price">${product.price.toLocaleString('fr-FR')} FCFA</div>
         <div class="actions">
           <a class="btn btn-primary" href="${buildWhatsAppLink(product.name)}" target="_blank" rel="noreferrer">Commander sur WhatsApp</a>
-          <a class="btn btn-secondary" href="product.html?id=${product.id}">Détails</a>
+          <a class="btn btn-secondary" href="product.html?id=${product.id}">Voir les détails</a>
           <a class="btn btn-secondary" href="paiement/index.html?product=${encodeURIComponent(product.name)}">Paiement</a>
         </div>
       </article>
     `)
         .join('')
     : '<p class="empty-state">Aucun produit correspondant. Essayez un autre filtre ou une autre recherche.</p>';
+  setupLazyImages();
 };
 
 const renderNewProducts = () => {
   if (!newProductsGrid) return;
-  const featured = products.filter((product) => product.featured);
+  const featured = products.filter((product) => product.featured).slice(0, 6);
   newProductsGrid.innerHTML = featured
     .map((product) => `
       <article class="product-card">
         <img src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" />
         <div class="meta">
-          <span class="badge">${product.category}</span>
+          <span class="badge">${categoryLabels[product.category] || product.category}</span>
           <span>${product.availability}</span>
         </div>
         <h3>${product.name}</h3>
@@ -85,11 +99,12 @@ const renderNewProducts = () => {
         <div class="price">${product.price.toLocaleString('fr-FR')} FCFA</div>
         <div class="actions">
           <a class="btn btn-primary" href="${buildWhatsAppLink(product.name)}" target="_blank" rel="noreferrer">Commander</a>
-          <a class="btn btn-secondary" href="product.html?id=${product.id}">Détails</a>
+          <a class="btn btn-secondary" href="product.html?id=${product.id}">Voir les détails</a>
         </div>
       </article>
     `)
     .join('');
+  setupLazyImages();
 };
 
 const renderTestimonials = () => {
@@ -106,6 +121,52 @@ const renderTestimonials = () => {
 const setupWhatsAppFab = () => {
   if (!whatsappFab) return;
   whatsappFab.href = buildWhatsAppLink('une paire de lunettes');
+};
+
+const setupLazyImages = () => {
+  document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    img.classList.add('lazy-image');
+    if (img.complete) {
+      img.classList.add('loaded');
+      return;
+    }
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    img.addEventListener('error', () => img.classList.add('loaded'));
+  });
+};
+
+const setupContactForm = () => {
+  if (!contactForm || !contactNameInput || !contactEmailInput || !contactSubjectInput || !contactMessageInput || !contactFeedback) return;
+
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const contactData = {
+      id: `contact-${Date.now()}`,
+      name: contactNameInput.value.trim(),
+      email: contactEmailInput.value.trim(),
+      phone: contactPhoneInput.value.trim(),
+      subject: contactSubjectInput.value.trim(),
+      message: contactMessageInput.value.trim(),
+      date: new Date().toLocaleString('fr-FR'),
+    };
+
+    if (!contactData.name || !contactData.email || !contactData.phone || !contactData.subject || !contactData.message) {
+      contactFeedback.textContent = "Veuillez remplir tous les champs avant d'envoyer.";
+      contactFeedback.style.color = '#f8b4b4';
+      return;
+    }
+
+    if (typeof window.saveContact === 'function') {
+      window.saveContact(contactData);
+      contactFeedback.textContent = 'Merci ! Votre demande a bien été enregistrée.';
+      contactFeedback.style.color = '#c8e6c9';
+      contactForm.reset();
+    } else {
+      contactFeedback.textContent = "Impossible d'enregistrer votre message pour le moment. Réessayez plus tard.";
+      contactFeedback.style.color = '#f8b4b4';
+    }
+  });
 };
 
 const setupFilters = () => {
@@ -171,5 +232,7 @@ renderProducts();
 renderNewProducts();
 renderTestimonials();
 setupWhatsAppFab();
+setupLazyImages();
+setupContactForm();
 setupMobileMenu();
 initPageEffects();

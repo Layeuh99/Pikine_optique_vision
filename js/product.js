@@ -11,10 +11,18 @@ const productWhatsApp = document.getElementById('product-whatsapp');
 const productPayment = document.getElementById('product-payment');
 const whatsappFab = document.getElementById('whatsapp-fab');
 const header = document.querySelector('.site-header');
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelectorAll('.site-nav a');
 const revealElements = document.querySelectorAll('.reveal');
 
 const productId = new URLSearchParams(window.location.search).get('id');
 const product = getStoredProducts().find((item) => item.id === productId);
+const categoryLabels = {
+  photochromique: 'Photochromique',
+  'anti-lumiere': 'Anti lumière bleue',
+  'anti-reflet': 'Anti reflet',
+  solaire: 'Solaire',
+};
 
 const buildWhatsAppLink = (productName) => {
   const message = `${SITE_CONFIG.whatsappGreeting}\nJe suis intéressé par cette paire de lunettes : ${productName}`;
@@ -23,7 +31,7 @@ const buildWhatsAppLink = (productName) => {
 
 const showNotFound = () => {
   if (productTitle) productTitle.textContent = 'Produit introuvable';
-  if (productDescription) productDescription.textContent = 'Ce produit n’existe pas ou a été retiré. Retournez à la boutique pour découvrir nos offres premium.';
+  if (productDescription) productDescription.textContent = "Ce produit n'existe pas ou a été retiré. Retournez à la boutique pour découvrir nos offres premium.";
   if (productCategory) productCategory.style.display = 'none';
   if (productWhatsApp) productWhatsApp.style.display = 'none';
   if (productPayment) productPayment.style.display = 'none';
@@ -36,7 +44,7 @@ const renderProduct = () => {
   }
 
   if (productTitle) productTitle.textContent = product.name;
-  if (productCategory) productCategory.textContent = product.category.toUpperCase();
+  if (productCategory) productCategory.textContent = categoryLabels[product.category] || product.category;
   if (productTagline) productTagline.textContent = product.longDescription;
   if (productPrice) productPrice.textContent = `${product.price.toLocaleString('fr-FR')} FCFA`;
   if (productAvailability) productAvailability.textContent = product.availability;
@@ -53,7 +61,7 @@ const renderProduct = () => {
   if (productGallery) {
     productGallery.innerHTML = galleryImages
       .map((src, index) => `
-        <button class="gallery-thumb" type="button" data-src="${src}">
+        <button class="gallery-thumb${index === 0 ? ' active' : ''}" type="button" data-src="${src}">
           <img src="${src}" alt="${product.name} image ${index + 1}" loading="lazy" decoding="async" />
         </button>
       `)
@@ -63,15 +71,45 @@ const renderProduct = () => {
       button.addEventListener('click', () => {
         const src = button.dataset.src;
         if (mainProductImage) mainProductImage.src = src;
+        productGallery.querySelectorAll('.gallery-thumb').forEach((thumb) => thumb.classList.remove('active'));
+        button.classList.add('active');
       });
     });
   }
+
+  setupLazyImages();
 
   if (productFeatures) {
     productFeatures.innerHTML = product.features
       .map((feature) => `<li>${feature}</li>`)
       .join('');
   }
+};
+
+const setupLazyImages = () => {
+  document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    img.classList.add('lazy-image');
+    if (img.complete) {
+      img.classList.add('loaded');
+      return;
+    }
+    img.addEventListener('load', () => img.classList.add('loaded'));
+    img.addEventListener('error', () => img.classList.add('loaded'));
+  });
+};
+
+const setupMobileMenu = () => {
+  if (!menuToggle || !header) return;
+
+  menuToggle.addEventListener('click', () => {
+    header.classList.toggle('menu-open');
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      header.classList.remove('menu-open');
+    });
+  });
 };
 
 const initPageEffects = () => {
@@ -107,4 +145,5 @@ if (whatsappFab) {
 }
 
 renderProduct();
+setupMobileMenu();
 initPageEffects();

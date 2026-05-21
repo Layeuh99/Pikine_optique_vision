@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/main.css?v=3" />
+  <link rel="stylesheet" href="css/main.css?v=4" />
 </head>
 <body>
   <div class="loader-overlay" aria-hidden="true">
@@ -24,9 +24,14 @@
         <img src="assets/logos/logo-pikine-optique.png" alt="Pikine Optique Vision" />
         <div>
           <span>Pikine Optique Vision</span>
-          <small>Retour à la boutique</small>
+          <small>Retour · la boutique</small>
         </div>
       </a>
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="site-nav">
         <a href="index.html">Accueil</a>
         <a href="index.html#produits">Produits</a>
@@ -44,7 +49,7 @@
             <h1 id="product-title">Produit</h1>
           </div>
           <div class="gallery-frame">
-            <img id="main-product-image" src="" alt="Produit Pikine Optique Vision" />
+            <img id="main-product-image" src="" alt="Produit Pikine Optique Vision" loading="lazy" decoding="async" />
           </div>
           <div class="gallery-grid" id="product-gallery"></div>
         </div>
@@ -78,7 +83,7 @@
         </article>
         <article class="feature-card glass gold-card">
           <h3>Paiement sécurisé</h3>
-          <p>Choisissez Wave ou paiement à la livraison selon votre préférence.</p>
+          <p>Choisissez Wave ou paiement · la livraison selon votre préférence.</p>
         </article>
       </div>
     </section>
@@ -98,8 +103,8 @@
     </div>
   </footer>
 
-  <script src="js/config.js?v=3"></script>
-  <script src="js/data.js?v=3"></script>
-  <script src="js/product.js?v=3"></script>
+  <script src="js/config.js?v=4"></script>
+  <script src="js/data.js?v=4"></script>
+  <script src="js/product.js?v=4"></script>
 </body>
 </html>

@@ -7,6 +7,10 @@ const adminPanel = document.querySelector('.admin-panel');
 const productForm = document.getElementById('product-form');
 const productList = document.getElementById('product-list');
 const ordersList = document.getElementById('orders-list');
+const contactRequestsList = document.getElementById('contact-requests-list');
+const adminProductsCount = document.getElementById('admin-products-count');
+const adminOrdersCount = document.getElementById('admin-orders-count');
+const adminContactsCount = document.getElementById('admin-contacts-count');
 const clearFormButton = document.getElementById('clear-form');
 
 const nameInput = document.getElementById('product-name');
@@ -22,7 +26,7 @@ const ADMIN_PASSWORD = SITE_CONFIG.adminPassword || 'admin2026';
 let editProductId = null;
 let productsList = getStoredProducts();
 
-const isAuthenticated = () => localStorage.getItem(ADMIN_AUTH_KEY) === 'true';
+const isAuthenticated = () => sessionStorage.getItem(ADMIN_AUTH_KEY) === 'true';
 
 const showAdminPanel = () => {
   adminPanel?.classList.remove('hidden');
@@ -37,11 +41,21 @@ const hideAdminPanel = () => {
 const authenticateAdmin = () => {
   if (isAuthenticated()) {
     showAdminPanel();
+    renderDashboard();
     renderProductsAdmin();
     renderOrdersAdmin();
+    renderContactRequestsAdmin();
   } else {
     hideAdminPanel();
   }
+};
+
+const renderDashboard = () => {
+  const orders = getStoredOrders();
+  const contacts = getStoredContacts();
+  if (adminProductsCount) adminProductsCount.textContent = productsList.length;
+  if (adminOrdersCount) adminOrdersCount.textContent = orders.length;
+  if (adminContactsCount) adminContactsCount.textContent = contacts.length;
 };
 
 const renderProductsAdmin = () => {
@@ -79,6 +93,22 @@ const renderOrdersAdmin = () => {
     : '<p>Aucune commande enregistrée pour le moment.</p>';
 };
 
+const renderContactRequestsAdmin = () => {
+  const contacts = getStoredContacts();
+  contactRequestsList.innerHTML = contacts.length
+    ? contacts.map((request) => `
+      <div class="order-row">
+        <div>
+          <strong>${request.subject}</strong>
+          <span>${request.message}</span>
+        </div>
+        <div>${request.date}</div>
+        <div>${request.name} · ${request.email} · ${request.phone}</div>
+      </div>
+    `).join('')
+    : '<p>Aucune demande de contact enregistrée pour le moment.</p>';
+};
+
 const resetForm = () => {
   editProductId = null;
   productForm.reset();
@@ -100,6 +130,7 @@ window.editProduct = (id) => {
 window.deleteProduct = (id) => {
   productsList = productsList.filter((item) => item.id !== id);
   saveProducts(productsList);
+  renderDashboard();
   renderProductsAdmin();
   alert('Produit supprimé.');
 };
@@ -124,6 +155,7 @@ productForm.addEventListener('submit', (event) => {
     productsList.unshift(productData);
   }
   saveProducts(productsList);
+  renderDashboard();
   renderProductsAdmin();
   resetForm();
 });
@@ -136,14 +168,28 @@ if (adminLoginForm) {
     const password = adminPasswordInput.value.trim();
 
     if (password === ADMIN_PASSWORD) {
-      localStorage.setItem(ADMIN_AUTH_KEY, 'true');
+      sessionStorage.setItem(ADMIN_AUTH_KEY, 'true');
       adminPasswordInput.value = '';
       adminLoginError.textContent = '';
       authenticateAdmin();
     } else {
-      adminLoginError.textContent = 'Mot de passe incorrect. Réessayez.';
+      adminLoginError.textContent = "Code d'accès incorrect. Réessayez.";
     }
   });
 }
+
+const logoutAdmin = () => {
+  sessionStorage.removeItem(ADMIN_AUTH_KEY);
+  authenticateAdmin();
+};
+
+const logoutButton = document.getElementById('logout-button');
+if (logoutButton) {
+  logoutButton.addEventListener('click', logoutAdmin);
+}
+
+window.addEventListener('beforeunload', () => {
+  sessionStorage.removeItem(ADMIN_AUTH_KEY);
+});
 
 authenticateAdmin();

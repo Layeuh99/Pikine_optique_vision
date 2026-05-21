@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Paiement | Pikine Optique Vision</title>
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/style.css?v=4" />
 </head>
 <body>
   <header class="site-header">
@@ -13,7 +13,7 @@
         <img src="../assets/logos/logo-pikine-optique.png" alt="Pikine Optique Vision" />
         <div>
           <span>Paiement sécurisé</span>
-          <small>Wave ou paiement à la livraison</small>
+          <small>Wave ou paiement · la livraison</small>
         </div>
       </a>
       <nav class="site-nav">
@@ -26,6 +26,11 @@
     <section class="section-heading">
       <h2>Options de paiement</h2>
       <p>Choisissez le mode de paiement qui vous convient le mieux au Sénégal.</p>
+    </section>
+
+    <section class="payment-summary" aria-live="polite">
+      <span>Produit sélectionné</span>
+      <strong id="payment-product-name">Une paire de lunettes élégante</strong>
     </section>
 
     <div class="payment-grid">
@@ -44,8 +49,8 @@
       </article>
 
       <article class="payment-card gold-card">
-        <h3>Paiement à la livraison</h3>
-        <p>Payez votre paire de lunettes lorsque vous la recevez à domicile ou en point relais.</p>
+        <h3>Paiement · la livraison</h3>
+        <p>Payez votre paire de lunettes lorsque vous la recevez · domicile ou en point relais.</p>
         <ul>
           <li>Pratique</li>
           <li>Sérénité</li>
@@ -58,7 +63,7 @@
     <section class="payment-details">
       <div class="section-heading">
         <h2>Livraison</h2>
-        <p>🚚 Livraison gratuite à Dakar / Livraison régionale disponible (50/50) / Paiement à la réception disponible.</p>
+        <p>👋 Livraison gratuite à Dakar / Livraison régionale disponible (50/50) / Paiement à la réception disponible.</p>
       </div>
       <div class="payment-note">
         <p>Pour finaliser une commande, cliquez sur le bouton WhatsApp ci-dessus. Le message sera prérempli pour un contact rapide avec Pikine Optique Vision.</p>
@@ -71,5 +76,10 @@
     const orderButton = document.getElementById('order-whatsapp');
     const query = new URLSearchParams(window.location.search);
     const product = query.get('product') || 'une paire de lunettes élégante';
-      const message = `Bonjour ${SITE_CONFIG.sellerName} 👋\nJe suis intéressé par cette paire de lunettes : ${product}`;
-      orderButton.href = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    const productName = document.getElementById('payment-product-name');
+    if (productName) productName.textContent = product;
+    const message = `Bonjour ${SITE_CONFIG.sellerName} 👋\nJe suis intéressé par cette paire de lunettes : ${product}`;
+    orderButton.href = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  </script>
+</body>
+</html>
