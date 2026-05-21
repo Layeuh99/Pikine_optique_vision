@@ -128,6 +128,10 @@ window.editProduct = (id) => {
 };
 
 window.deleteProduct = (id) => {
+  const product = productsList.find((item) => item.id === id);
+  const confirmed = window.confirm(`Supprimer ${product?.name || 'ce produit'} ? Cette action est définitive.`);
+  if (!confirmed) return;
+
   productsList = productsList.filter((item) => item.id !== id);
   saveProducts(productsList);
   renderDashboard();
@@ -137,17 +141,29 @@ window.deleteProduct = (id) => {
 
 productForm.addEventListener('submit', (event) => {
   event.preventDefault();
+  const existingProduct = editProductId ? productsList.find((item) => item.id === editProductId) : null;
+  const productName = nameInput.value.trim();
+  const productImage = imageInput.value.trim();
+  const productDescription = descriptionInput.value.trim();
   const productData = {
     id: editProductId || `product-${Date.now()}`,
-    name: nameInput.value.trim(),
+    name: productName,
     price: Number(priceInput.value),
     availability: stockInput.value,
     category: categoryInput.value,
-    image: imageInput.value.trim(),
-    description: descriptionInput.value.trim(),
-    badge: 'Nouveauté',
-    featured: true,
-    promo: false,
+    image: productImage,
+    images: existingProduct?.images?.length ? existingProduct.images : [productImage],
+    description: productDescription,
+    longDescription: existingProduct?.longDescription || `${productName} est conçue pour offrir style, confort et protection au quotidien.`,
+    features: existingProduct?.features?.length ? existingProduct.features : [
+      'Protection confortable',
+      'Monture légère',
+      'Design premium',
+      'Usage quotidien',
+    ],
+    badge: existingProduct?.badge || 'Nouveauté',
+    featured: existingProduct?.featured ?? true,
+    promo: existingProduct?.promo ?? false,
   };
   if (editProductId) {
     productsList = productsList.map((item) => (item.id === editProductId ? productData : item));

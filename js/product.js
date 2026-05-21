@@ -45,7 +45,7 @@ const renderProduct = () => {
 
   if (productTitle) productTitle.textContent = product.name;
   if (productCategory) productCategory.textContent = categoryLabels[product.category] || product.category;
-  if (productTagline) productTagline.textContent = product.longDescription;
+  if (productTagline) productTagline.textContent = product.longDescription || `${product.name} est conçue pour offrir style, confort et protection au quotidien.`;
   if (productPrice) productPrice.textContent = `${product.price.toLocaleString('fr-FR')} FCFA`;
   if (productAvailability) productAvailability.textContent = product.availability;
   if (productDescription) productDescription.textContent = product.description;
@@ -80,7 +80,11 @@ const renderProduct = () => {
   setupLazyImages();
 
   if (productFeatures) {
-    productFeatures.innerHTML = product.features
+    const features = Array.isArray(product.features) && product.features.length
+      ? product.features
+      : ['Protection confortable', 'Monture légère', 'Design premium', 'Usage quotidien'];
+
+    productFeatures.innerHTML = features
       .map((feature) => `<li>${feature}</li>`)
       .join('');
   }
