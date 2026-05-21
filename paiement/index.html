@@ -57,14 +57,14 @@
           <li>Sérénité</li>
           <li>Adapté à Dakar et régions</li>
         </ul>
-        <a class="btn btn-primary" id="order-whatsapp" href="https://wa.me/221777123456?text=Bonjour%20Pikine%20Optique%20Vision%20%F0%9F%91%8B">Commander sur WhatsApp</a>
+        <a class="btn btn-primary" id="order-whatsapp" href="https://wa.me/221778379457?text=Bonjour%20je%20viens%20de%20voir%20votre%20page%20et%20je%20souhaite%20avoir%20plus%20d'informations">Commander sur WhatsApp</a>
       </article>
     </div>
 
     <section class="payment-details">
       <div class="section-heading">
         <h2>Livraison</h2>
-        <p>👋 Livraison gratuite à Dakar / Livraison régionale disponible (50/50) / Paiement à la réception disponible.</p>
+        <p>Livraison gratuite à Dakar / Livraison régionale disponible (50/50) / Paiement à la réception disponible.</p>
       </div>
       <div class="payment-note">
         <p>Pour finaliser une commande, cliquez sur le bouton WhatsApp ci-dessus. Le message sera prérempli pour un contact rapide avec Pikine Optique Vision.</p>
@@ -79,7 +79,7 @@
     const product = query.get('product') || 'une paire de lunettes élégante';
     const productName = document.getElementById('payment-product-name');
     if (productName) productName.textContent = product;
-    const message = `Bonjour ${SITE_CONFIG.sellerName} 👋\nJe suis intéressé par cette paire de lunettes : ${product}`;
+    const message = `Bonjour ${SITE_CONFIG.sellerName}\nJe suis intéressé par cette paire de lunettes : ${product}`;
     orderButton.href = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
   </script>
 </body>
